@@ -5,6 +5,7 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
@@ -58,12 +59,20 @@ public class Main {
     private static void changeStrings(ClassOrInterfaceDeclaration c) {
         List<FieldDeclaration> fieldDeclList = c.getFields();
         for (FieldDeclaration ff : fieldDeclList) {
-            if (
-                    !ff.getVariable(0).getInitializer().isPresent() &&
-                            ff.getVariable(0).getType().asString().equals("String")
-            ) {
-                ff.getVariable(0).setInitializer("\"pusty ciag\"");
+
+            for(VariableDeclarator variable : ff.getVariables()){
+                if (
+                        !variable.getInitializer().isPresent() &&
+                                (variable.getType().asString().equals("String")
+                                        ||
+                                        variable.getType().asString().equals("java.lang.String")
+                                )
+                ) {
+                    variable.setInitializer("\"pusty ciag\"");
+                }
             }
+
+
         }
     }
 

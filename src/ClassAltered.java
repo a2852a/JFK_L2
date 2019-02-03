@@ -2,6 +2,8 @@ import static java.lang.System.out;
 
 public final class ClassAltered {
 
+    private java.lang.String test = "pusty ciag", test1 = "pusty ciag";
+
     private String myStringOne = "hello";
 
     private String emptyString = "pusty ciag";

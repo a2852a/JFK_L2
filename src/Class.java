@@ -2,6 +2,7 @@ import static java.lang.System.out;
 
 public final class Class {
 
+    private java.lang.String test,test1;
     private String myStringOne = "hello";
     private String emptyString;
     private String anotherEmptyString;
